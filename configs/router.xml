@@ -6,6 +6,7 @@
 		<frontend>Page</frontend>
 		<frontend>User</frontend>
 		<frontend>File</frontend>
+		<frontend>D</frontend>
 		<admin>Admin</admin>
 		<admin>System</admin>
 		<admin>User</admin>

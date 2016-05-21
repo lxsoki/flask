@@ -284,5 +284,14 @@ footer{
 .flask_download a:hover{
 	color: #FFA630;
 }
+.flask_error{
+	
+}
+.flask_error_icon{
+	font-size: 144pt;
+	margin-bottom: 50px;
+}
 
-
+.flask_error_not_found{
+	text-align: center;
+}

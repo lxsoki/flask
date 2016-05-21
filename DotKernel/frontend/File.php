@@ -79,6 +79,19 @@ class File extends Dot_Model
 		return true;
 	}
 	
+	public function getFileFromDb($hash)
+	{
+		$select = $this->db->select()
+		->from('file')
+		->where('hash = ?', $hash);
+		$files = $this->db->fetchAll($select);
+		if(count($files) == 1)
+		{
+			return array_shift($files);
+		}
+		return false;
+	}
+	
 	public function storeFile($tmpName, $hash)
 	{
 		$directory = FLASK_UPLOAD_PATH.'/'.substr($hash,0,2);
