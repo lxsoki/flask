@@ -23,18 +23,6 @@ switch ($registry->requestAction)
 	default:
 	case 'home';
 		// call showPage method to view the home page
-		$pageView->showPage('home');
-	break;
-	case 'about':
-		$pageView->showPage($registry->requestAction);
-	break;
-	case 'who-we-are':
-		$pageView->showPage($registry->requestAction);
-	break;
-	case 'outbound-links':
-		$pageView->showPage($registry->requestAction);
-	break;
-	case 'coding-standard':
-		$pageView->showCodingStandard();
+		$pageView->showPage('../file/upload');
 	break;
 }
