@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<dots>
+		<variable option="global">
+			<defaultPageTitle>flask</defaultPageTitle>
+			<defaultMetaDescription>Transfer files using flask</defaultMetaDescription>
+			<defaultMetaKeywords>flask, file sharing, download </defaultMetaKeywords>
+			<siteName>flask</siteName>
+		</variable>
+		<variable option="admin">
+		</variable>
+		<variable option="frontend">
+			<canonicalUrl></canonicalUrl>
+		</variable>	
+		<variable option="mobile">
+		</variable>	
+	</dots>
+</config>
