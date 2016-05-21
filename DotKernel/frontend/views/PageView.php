@@ -37,7 +37,7 @@ class Page_View extends View
 	public function showPage($templateFile = '')
 	{
 		if ($templateFile != '') $this->templateFile = $templateFile;//in some cases we need to overwrite this variable
-		$this->tpl->setFile('tpl_main', 'file/' . $this->templateFile . '.tpl');
+		$this->tpl->setFile('tpl_main', 'page/' . $this->templateFile . '.tpl');
 	}
 	
 	/** Display the content of the Sample Class file

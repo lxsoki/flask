@@ -28,4 +28,91 @@ class File extends Dot_Model
 	{
 		parent::__construct();
 	}
+	
+	public function isHashAvailable($hash)
+	{
+		$select = $this->db->select()
+							->from('file')
+							->where('hash = ?', $hash);
+		return  (count($this->db->fetchAll($select)) == 0);
+	}
+	
+	public function generateShortUrl($name, $minLength=4)
+	{
+		// actual generation 
+		
+		for($l=$minLength; $l<=20; $l++)
+		{
+			for($i=0; $i<3; $i++)
+			{
+				$hash = md5(microtime(true)) ;
+				$newHash = substr($hash, 0, $l);
+				if($this->isHashAvailable($newHash))
+				{
+					return $newHash;
+				}
+			}
+		}
+	}
+	
+	public function getExtension($name)
+	{
+		$name = explode('.', $name);
+		if(count($name)>1)
+		{
+			return $name[count($name)-1];
+		}
+		else 
+		{
+			return '';
+		}
+	}
+	
+	public function addFileToDb($name, $type, $tmpName, $error, $size, $extension, $hash, $userId = null, $shareOptions = null)
+	{
+		// add to db
+		$fileData = array('hash'=> $hash, 'name'=>$name, 'type' => $type, 'extension' => $extension , 'size'=>$size, );
+		if($userId != null) $fileData['userId'] = $userId;
+		if($userId != null) $fileData['shareOptions'] = $shareOptions;
+		
+		$this->db->insert('file', $fileData);
+		return true;
+	}
+	
+	public function storeFile($tmpName, $hash)
+	{
+		$directory = FLASK_UPLOAD_PATH.'/'.substr($hash,0,2);
+		$file = substr($hash, 2, strlen($hash));
+		if(!file_exists($directory))
+		{
+			mkdir(FLASK_UPLOAD_PATH.'/'.substr($hash,0,2), 0777, true);
+		}
+		move_uploaded_file($tmpName, $directory.'/'.$file);
+		return true;
+	}
+	
+	/**/
+	public function getFileFromDisk($hash)
+	{
+		$directory = FLASK_UPLOAD_PATH.'/'.substr($hash,0,2);
+		$file = substr($hash, 2, strlen($hash));
+		return $directory.'/'.$file;
+	}
+	
+	public function processFile($name, $type, $tmpName, $error, $size, $userId = null, $shareOptions = null)
+	{
+		// validation
+		$hash = $this->generateShortUrl($name);
+		$extension = $this->getExtension($name);
+		$name = trim($name, '.'.$extension);
+		
+		// store to disk
+		$this->storeFile($tmpName, $hash);
+		
+		// add to db
+		$this->addFileToDb($name, $type, $tmpName, $error, $size, $extension, $hash, $userId, $shareOptions);
+		
+		return array('name'=>$name, 'extension'=> $extension, 'size'=>$size, 'hash'=> $hash); 
+	}
+	
 }

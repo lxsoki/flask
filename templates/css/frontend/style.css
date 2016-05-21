@@ -182,3 +182,107 @@ ul.url_pattern li { list-style: disc; padding: 10px 0px; }
 	ul.form li label.empty { line-height: 1px; margin-bottom: 0px; }
 	ul.form li input[type="text"], ul.form li input[type="password"] { float: none; width: 100%; }
 }
+
+
+
+/************** FLASK ******************/ 
+header{
+	background-color: #FFA630;
+}
+#wrapper{
+	background-color: #1d1d1d; 
+}
+#content{
+	background-color: #D7E8BA; 
+	padding: 15px;
+}
+.fileUpload{
+	margin:auto;
+	display:block; 
+	border: 0px;
+	width: 200px;
+	height: 40px;
+	font-size: 24px;
+	color:transparent;
+}
+
+.uploadButton{
+	margin:auto;
+	display:block; 
+	border: 0px;
+	background-color: #611C35;
+	color: #fff;
+	width: 200px;
+	height: 40px;
+	font-size: 24px;	
+}
+.uploadButton:hover{
+	background-color: #3d3d3d;
+	color: #FFA630;
+}
+
+
+.flaskFooter{
+	background-color: #2E5077;
+	color: #fff;
+	padding: 24px;
+	font-size: 16px;
+	text-align: center;
+}
+
+h1, h2, h3, h4{
+	color: #611C35;
+}
+.debugger{
+	color: #fff;
+}
+footer{
+	background-color: #4DA1A9;
+}
+
+.flask_file{
+	position:relative;
+	clear:both;
+	display:block;
+	color: #eaeaea;
+	background-color: #4F6D7A;
+	margin-top: 16px;
+	
+}
+
+.flask_file_data{
+	padding: 0px;
+	margin: 0px;
+	float:left;
+	width: 75px;
+	background-color: #DB504A;
+	color: #eaeaea;
+	text-align: right;
+	padding-right: 7px; 
+}
+.flask_file_name{
+	padding: 8px;
+	margin:auto;
+	text-align: center;
+}
+
+.flask_download {
+	float:right;
+	position:absolute;
+	
+	right: 0px;
+	top: 0px;
+	padding-top: 5px;
+	padding-bottom: 1px;
+	padding-right: 5px;
+	padding-left: 5px;
+	background-color: #427AA1;
+}
+.flask_download a{
+	color: #EBF2FA;
+}
+.flask_download a:hover{
+	color: #FFA630;
+}
+
+

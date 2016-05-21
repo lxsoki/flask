@@ -15,7 +15,8 @@
  * @author     DotKernel Team <team@dotkernel.com>
  */
 
-$pageView = new Page_View($tpl);
+$pageView = new File_View($tpl);
+$fileModel = new File();
 // all actions MUST set  the variable  $pageTitle
 $pageTitle = $option->pageTitle->action->{$registry->requestAction};
 switch ($registry->requestAction)
@@ -24,11 +25,20 @@ switch ($registry->requestAction)
 	case 'upload';
 		if(count($_POST)>0)
 		{
-			echo '<pre/>';
-			var_dump($_FILES);
-			exit(__FILE__.':'.__LINE__);
+			foreach($_FILES['files']['name'] as $key => $name)
+			{
+				$fileData = $fileModel->processFile($name,
+				$_FILES['files']['type'][$key],
+				$_FILES['files']['tmp_name'][$key],
+				$_FILES['files']['error'][$key],
+				$_FILES['files']['size'][$key]);
+				$uploadedFiles[] = $fileData;
+			}
+			$pageView->showUploadedFiles('upload-complete', $uploadedFiles);
 		}
-		// call showPage method to view the home page
-		$pageView->showPage('upload');
+		else 
+		{
+			$pageView->showPage('upload');
+		}
 	break;
 }

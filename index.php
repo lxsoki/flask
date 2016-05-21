@@ -24,6 +24,7 @@ define('APPLICATION_ENV', (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV')
 
 // Define application path	
 define('APPLICATION_PATH', realpath(dirname(__FILE__)));
+define('FLASK_UPLOAD_PATH', APPLICATION_PATH . '/data/uploads' );
 
 //Set error reporting
 if(APPLICATION_ENV != 'production') error_reporting(- 1);

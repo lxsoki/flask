@@ -20,20 +20,24 @@ class File_View extends View
 	public function showPage($templateFile = '')
 	{
 		if ($templateFile != '') $this->templateFile = $templateFile;//in some cases we need to overwrite this variable
-		$this->tpl->setFile('tpl_main', 'page/' . $this->templateFile . '.tpl');
+		$this->tpl->setFile('tpl_main', 'file/' . $this->templateFile . '.tpl');
 	}
 	
-	/** Display the content of the Sample Class file
-	 * @access public
-	 * @param
-	 * @return void
-	 */
-	public function showCodingStandard()
+	public function showUploadedFiles($templateFile, $uploadedFiles = array() )
 	{
-		$content = highlight_file(APPLICATION_PATH . '/library/Dot/Sample/Class.php', true);
-		
-		$this->tpl->setFile('tpl_main', 'page/coding-standard.tpl');
-		$this->tpl->setVar('CODING_STANDARD', $content);
-		
+		$this->showPage($templateFile);
+		if(count($uploadedFiles) > 1 )
+		{
+			$this->tpl->setBlock('tpl_main', 'flask_file_list', 'filelist_block');
+			foreach($uploadedFiles as $file)
+			{
+				
+				foreach($file as $key => $value)
+				{
+					$this->tpl->setVar('FILE_'.strtoupper($key), $value);
+				}
+				$this->tpl->parse('filelist_block', 'flask_file_list', true);
+			}
+		}
 	}
 }
