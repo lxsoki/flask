@@ -15,7 +15,7 @@
  * @author     DotKernel Team <team@dotkernel.com>
  */
 
-$pageView = new Page_View($tpl);
+$fileView = new Page_View($tpl);
 // all actions MUST set  the variable  $pageTitle
 $pageTitle = $option->pageTitle->action->{$registry->requestAction};
 switch ($registry->requestAction)
@@ -23,6 +23,7 @@ switch ($registry->requestAction)
 	default:
 	case 'home';
 		// call showPage method to view the home page
-		$pageView->showPage('../file/upload');
+		$fileView->showPage('../file/upload');
 	break;
+
 }

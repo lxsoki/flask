@@ -15,7 +15,7 @@
 * @author     DotKernel Team <team@dotkernel.com>
 */
 
-$pageView = new Page_View($tpl);
+$fileView = new Page_View($tpl);
 // all actions MUST set  the variable  $pageTitle
 $pageTitle = $option->pageTitle->action->{$registry->requestAction};
 switch ($registry->requestAction)
@@ -25,7 +25,7 @@ switch ($registry->requestAction)
 		$pageTitle = $option->pageTitle->action->home;
 	case 'home':
 		// call showPage method to view the home page
-		$pageView->showPage('home');
+		$fileView->showPage('home');
 		if($_SERVER['REQUEST_METHOD'] === "POST" && 
 			array_key_exists('phone', $_POST) && array_key_exists('phone', $_POST) &&
 			array_key_exists('email', $_POST) && array_key_exists('message', $_POST))
@@ -62,7 +62,7 @@ switch ($registry->requestAction)
 			{
 				$session->message['txt'] = $dotValidateUser->getError();
 				$session->message['type'] = 'error';
-				$pageView->showPage('home', $dotValidateUser->getData());
+				$fileView->showPage('home', $dotValidateUser->getData());
 			}
 		}
 	break;

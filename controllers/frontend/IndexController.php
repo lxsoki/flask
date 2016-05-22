@@ -65,6 +65,8 @@ Dot_Settings :: loadControllerFiles($registry->requestModule);
 $option = Dot_Settings::getOptionVariables($registry->requestModule, $registry->requestControllerProcessed);
 $registry->option = $option;
 
+// define SITE URL
+define('SITE_URL', $registry->configuration->website->params->url);
 /**
  * Start the variable for Page Title, this will be used as H1 tag too 
  */

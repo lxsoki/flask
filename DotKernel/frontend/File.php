@@ -104,6 +104,10 @@ class File extends Dot_Model
 		return true;
 	}
 	
+	public function getThumbnail($hash = null)
+	{
+		return '/data/thumbnails/file.png';
+	}
 	/**/
 	public function getFileFromDisk($hash)
 	{
@@ -112,6 +116,10 @@ class File extends Dot_Model
 		return $directory.'/'.$file;
 	}
 	
+	public function generateThumbnail($hash)
+	{
+		return true;
+	}
 	public function processFile($name, $type, $tmpName, $error, $size, $userId = null, $shareOptions = null)
 	{
 		// validation
@@ -122,10 +130,18 @@ class File extends Dot_Model
 		// store to disk
 		$this->storeFile($tmpName, $hash);
 		
+		$this->generateThumbnail($hash);
+		
 		// add to db
 		$this->addFileToDb($name, $type, $tmpName, $error, $size, $extension, $hash, $userId, $shareOptions);
 		
-		return array('name'=>$name, 'extension'=> $extension, 'size'=>$size, 'hash'=> $hash); 
+		return array('name'=>$name, 'extension'=> $extension, 'size'=>$size, 'hash'=> $hash, 
+						'type'=>$type,
+						'url' => '/d/'.$hash ,
+						'thumbnailUrl' => '/data/thumbnails/file.png',
+						'deleteUrl' => '#',
+						'deleteType' => 'DELETE'
+		); 
 	}
 	
 }

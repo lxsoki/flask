@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<dots>
+		<variable option="global">
+		</variable>
+		<variable option="admin">
+		</variable>
+		<variable option="frontend">
+			<pageTitle>
+				<action>
+				<upload>Incarcare fisiere</upload>
+				<notfound>Fisierul nu a fost gasit</notfound>
+			</action>
+			</pageTitle>
+		</variable>
+		<variable option="mobile">
+			<pageTitle>
+				<action>
+					<home>Mobile Version</home>
+				</action>
+			</pageTitle>
+			<validate>
+				<details>
+					<lengthMin>3</lengthMin>
+				</details>
+			</validate>	
+		</variable>			
+	</dots>
+</config>
