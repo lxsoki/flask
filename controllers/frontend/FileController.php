@@ -33,22 +33,24 @@ switch ($registry->requestAction)
 				$_FILES['files']['tmp_name'][$key],
 				$_FILES['files']['error'][$key],
 				$_FILES['files']['size'][$key]);
+				
 				$uploadedFiles[] = $fileData;
 			}
 			$fileView->showUploadedFiles('upload-complete', $uploadedFiles);
 		}
 		else 
 		{
-			$fileView->showPage('upload-old');
+			$fileView->showPage('upload');
 		}
 	break;
 	
 	
-	case 'upload-beta':
-		$fileView->showPage('upload');
-	break;
+// 	case 'upload-beta':
+// 		$fileView->showPage('upload');
+// 	break;
 	
 	case 'upload-json';
+	
 	if(count($_FILES)>0)
 	{
 		foreach($_FILES['files']['name'] as $key => $name)

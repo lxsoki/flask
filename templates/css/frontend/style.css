@@ -205,18 +205,19 @@ header{
 	font-size: 24px;
 	color:transparent;
 }
-
-.uploadButton{
+.flask_button, .uploadButton{
 	margin:auto;
 	display:block; 
 	border: 0px;
-	background-color: #611C35;
-	color: #fff;
 	width: 200px;
 	height: 40px;
-	font-size: 24px;	
+	color: #fff;
 }
-.uploadButton:hover{
+.uploadButton{
+	background-color: #611C35;
+	font-size: 24px;
+}
+.uploadButton:hover, .flask_button:hover{
 	background-color: #3d3d3d;
 	color: #FFA630;
 }
@@ -247,7 +248,6 @@ footer{
 	color: #eaeaea;
 	background-color: #4F6D7A;
 	margin-top: 16px;
-	
 }
 
 .flask_file_data{
@@ -294,4 +294,16 @@ footer{
 
 .flask_error_not_found{
 	text-align: center;
+}
+
+
+#flask_add_file{
+
+}
+
+.flask_blue_button{
+	background-color: #4499ff;
+}
+.filelist{
+	padding: 15px;
 }

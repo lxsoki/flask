@@ -125,8 +125,9 @@ class File extends Dot_Model
 		// validation
 		$hash = $this->generateShortUrl($name);
 		$extension = $this->getExtension($name);
-		$name = trim($name, '.'.$extension);
 		
+		$name = substr($name, 0, stripos($name, '.'.$extension));
+
 		// store to disk
 		$this->storeFile($tmpName, $hash);
 		

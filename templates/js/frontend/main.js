@@ -49,8 +49,14 @@ function ShowTopMenu ()
 	}
 	else
 	{
-		$('#top_menu').slideDown("slow", function() {
-			
+		$('#top_menu').slideDown("slow", function() {		
 		});
 	}
 }
+$( document ).ready( function(){
+$('#flask_add_file').click(function(event){
+	event.preventDefault();
+	 
+	$('.filelist').append(' <input class="fileUpload" type="file" name="files[]"/>');
+	 
+})});
