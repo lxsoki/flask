@@ -26,13 +26,21 @@ switch ($registry->requestAction)
 	case 'upload-old':
 		if(count($_POST)>0)
 		{
+			$userId = isset($registry->session->user->id) ? $registry->session->user->id : null;
+			$uploadedFiles = array();
 			foreach($_FILES['files']['name'] as $key => $name)
 			{
+				if(empty($name))
+				{
+					continue;
+				}
+					 
 				$fileData = $fileModel->processFile($name,
 				$_FILES['files']['type'][$key],
 				$_FILES['files']['tmp_name'][$key],
 				$_FILES['files']['error'][$key],
-				$_FILES['files']['size'][$key]);
+				$_FILES['files']['size'][$key],
+				$userId);
 				
 				$uploadedFiles[] = $fileData;
 			}

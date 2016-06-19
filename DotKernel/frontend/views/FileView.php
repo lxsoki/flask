@@ -26,11 +26,13 @@ class File_View extends View
 	public function showUploadedFiles($templateFile, $uploadedFiles = array() )
 	{
 		$this->showPage($templateFile);
-		if(count($uploadedFiles) > 1 )
+		
+		if(count($uploadedFiles) > 0 )
 		{
 			$this->tpl->setBlock('tpl_main', 'flask_file_list', 'filelist_block');
 			foreach($uploadedFiles as $file)
 			{
+				$file['name'] = $file['name'].'.'.$file['extension'];
 				foreach($file as $key => $value)
 				{
 					$this->tpl->setVar('FILE_'.strtoupper($key), $value);

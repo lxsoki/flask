@@ -23,16 +23,28 @@ $hash = $registry->requestAction;
 switch ($registry->requestAction)
 {
 	default:
+		$expiry = isset($registry->settings->freeFileExpiry) ? $registry->settings->freeFileExpiry : 24;
+		$userId = isset($registry->session->user->id) ? $registry->session->user->id : null;
 		$fileData = $dModel->getFileFromDb($hash);
 		if(is_array($fileData))
 		{
-			$file = $dModel->getFileFromDisk($hash);
-			$fp = fopen($file, 'rb');
-			$attachmentName  = $fileData['name'] ;
-			$attachmentName .= (strlen($fileData['extension'])>0) ? '.'. $fileData['extension'] :'';
-			header('Content-Disposition: attachment; filename='.$attachmentName);
-			echo fread($fp, filesize($file));
-			exit;
+			
+			$fileExpire = date(strtotime($fileData['dateUploaded'].'+'.$expiry.' hours'));
+			$now = time();
+			if($fileExpire < $now && ($fileData['userId'] == null || $userId == null ) )
+			{
+				$dView->showPage('file-expired');
+			}
+			else
+			{
+				$file = $dModel->getFileFromDisk($hash);
+				$fp = fopen($file, 'rb');
+				$attachmentName = $fileData['name'];
+				$attachmentName .= (strlen($fileData['extension']) > 0) ? '.' . $fileData['extension'] : '';
+				header('Content-Disposition: attachment; filename=' . $attachmentName);
+				echo fread($fp, filesize($file));
+				exit();
+			}
 		}
 		else 
 		{
