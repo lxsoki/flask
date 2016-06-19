@@ -60,3 +60,29 @@ $('#flask_add_file').click(function(event){
 	$('.filelist').append(' <input class="fileUpload" type="file" name="files[]"/>');
 	 
 })});
+
+
+
+function nrToSize(number)
+{
+	if(number < 10 )
+		return (number).toFixed(2) + ' b';
+	if(number < 1024 )
+		return (number/100).toFixed(2) + ' kb';
+	if(number < 1024 * 1000 )
+		return (number/1024).toFixed(2) +' kb'; 
+	if(number < 1024 * 1024 * 1000 )
+		return (number/1024/1024).toFixed(2) +' mb';
+	if(number < 1024 * 1024 * 1024 *1000 )
+		return (number/1024/1024/1024).toFixed(2) +' gb'; 
+	
+}
+
+$( document ).ready(function() {
+    $( '.flask_file_size' ).each(function( index, element ) {
+    // element == this
+
+    var number = $( element ).text(   );
+    $( element ).text( nrToSize(number) );
+  });
+});

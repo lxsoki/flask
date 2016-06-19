@@ -31,7 +31,6 @@ class File_View extends View
 			$this->tpl->setBlock('tpl_main', 'flask_file_list', 'filelist_block');
 			foreach($uploadedFiles as $file)
 			{
-				
 				foreach($file as $key => $value)
 				{
 					$this->tpl->setVar('FILE_'.strtoupper($key), $value);

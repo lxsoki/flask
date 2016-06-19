@@ -1,27 +1,5 @@
 <script type="text/javascript">
 
-function nrToSize(number)
-{
-	if(number < 10 )
-		return (number).toFixed(2) + ' b';
-	if(number < 1024 )
-		return (number/100).toFixed(2) + ' kb';
-	if(number < 1024 * 1000 )
-		return (number/1024).toFixed(2) +' kb'; 
-	if(number < 1024 * 1024 *1000 )
-		return (number/1024).toFixed(2) +' mb';
-	if(number < 1024 * 1024 * 1024 *1000 )
-		return (number/1024).toFixed(2) +' gb'; 
-	
-}
-$( document ).ready(function() {
-    $( '.flask_file_size' ).each(function( index, element ) {
-    // element == this
-
-    var number = $( element ).text(   );
-    $( element ).text( nrToSize(number) );
-  });
-});
 </script>
 <h2> Fisierele au fost incarcate cu succes </h2>
 
