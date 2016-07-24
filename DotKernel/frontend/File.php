@@ -73,8 +73,14 @@ class File extends Dot_Model
 		// add to db
 		$fileData = array('hash'=> $hash, 'name'=>$name, 'type' => $type, 'extension' => $extension , 'size'=>$size, );
 		if($userId != null) $fileData['userId'] = $userId;
-		if($userId != null) $fileData['shareOptions'] = $shareOptions;
+		if($userId != null) $fileData['shareOptions'] = null; #@todo: process share options  = $shareOptions;
 		
+		// process share options 
+		if(isset($shareOptions['expiry']))
+		{
+			$fileData['customExpiry'] = $shareOptions['expiry'];
+		}
+			
 		$this->db->insert('file', $fileData);
 		return true;
 	}
@@ -132,6 +138,7 @@ class File extends Dot_Model
 		$this->storeFile($tmpName, $hash);
 		
 		$this->generateThumbnail($hash);
+		
 		
 		// add to db
 		$this->addFileToDb($name, $type, $tmpName, $error, $size, $extension, $hash, $userId, $shareOptions);

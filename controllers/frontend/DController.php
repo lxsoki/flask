@@ -43,6 +43,19 @@ switch ($registry->requestAction)
 				$attachmentName .= (strlen($fileData['extension']) > 0) ? '.' . $fileData['extension'] : '';
 				header('Content-Disposition: attachment; filename=' . $attachmentName);
 				echo fread($fp, filesize($file));
+				
+				// optimisation + workaround for bigg files 
+				$fileSize = filesize($file);
+				$pieceSize = (1024*1024)*16; // 16 mb per piece 
+				$filePieces = (int) ($fileSize / $pieceSize );
+				$lastPiece = $fileSize % $pieceSize; /**/
+				header('Content-Disposition: attachment; filename=2' . $attachmentName);
+				for($i=0; $i<$filePieces; $i++)
+				{
+					echo fread($fp, $pieceSize );
+				}
+				echo fread($fp, $lastPiece );
+				echo ' ---flask_EOF---' ;
 				exit();
 			}
 		}

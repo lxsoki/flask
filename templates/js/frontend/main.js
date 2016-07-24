@@ -79,10 +79,25 @@ function nrToSize(number)
 }
 
 $( document ).ready(function() {
+
+	$( '#expiry_days_text' ).text($( '#expiry_days_input' ).value );
+	
     $( '.flask_file_size' ).each(function( index, element ) {
     // element == this
 
     var number = $( element ).text(   );
     $( element ).text( nrToSize(number) );
   });
+    $( '#expiry_days_input' ).on('change', function(   ) {
+        // element == this
+    	if(this.value == 0){
+    		$( '#expiry_days_text' ).text("nelimitat");
+    	}
+    	else{
+    		$( '#expiry_days_text' ).text(this.value + " zile");
+    	}
+      });
+    
 });
+
+

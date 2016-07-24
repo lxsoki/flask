@@ -18,12 +18,21 @@
 $fileView = new Page_View($tpl);
 // all actions MUST set  the variable  $pageTitle
 $pageTitle = $option->pageTitle->action->{$registry->requestAction};
+$userData = $registry->session->user;
+
 switch ($registry->requestAction)
 {
 	default:
 	case 'home';
 		// call showPage method to view the home page
-		$fileView->showPage('../file/upload');
+		if(isset($registry->session->user->username, $registry->session->user->id) )
+		{
+			$fileView->showPage('../file/upload-user');
+		}
+		else 
+		{
+			$fileView->showPage('../file/upload');
+		}
 	break;
 
 }

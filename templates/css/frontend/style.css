@@ -307,3 +307,18 @@ footer{
 .filelist{
 	padding: 15px;
 }
+
+.expiry_div{
+	background-color: #333;
+	height: 40px;
+	vertical-align: middle;
+	width: 200px;
+	margin: auto;
+	padding: 10px 10px;
+	color: #fff;
+}
+
+#expiry_text_div{
+	text-align: right;
+	font-size: 20px;
+}
