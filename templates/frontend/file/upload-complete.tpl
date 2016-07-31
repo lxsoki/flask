@@ -4,8 +4,12 @@
 <h2> Fisierele au fost incarcate cu succes </h2>
 
 <div class="flask_filelist">
+	<div id="flask_key_wrapper">
+		<div id="flask_key">{FLASK_KEY}</div>
+	</div>
 <!-- BEGIN flask_file_list -->
 	<div class="flask_file">
+
 		<div class="flask_file_data">
 		
 			<div class="flask_file_extension">{FILE_EXTENSION}</div>

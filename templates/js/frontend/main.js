@@ -77,9 +77,10 @@ function nrToSize(number)
 		return (number/1024/1024/1024).toFixed(2) +' gb'; 
 	
 }
+var lock_status = 'unlock-alt';
 
 $( document ).ready(function() {
-
+	$('[name="flask_lock"]' ).val(lock_status);
 	$( '#expiry_days_text' ).text($( '#expiry_days_input' ).value );
 	
     $( '.flask_file_size' ).each(function( index, element ) {
@@ -97,7 +98,25 @@ $( document ).ready(function() {
     		$( '#expiry_days_text' ).text(this.value + " zile");
     	}
       });
-    
+  
+    $( '.lock_div' ).on('click', function(){
+    	$( '#lock_toggle' ).removeClass('fa-'+lock_status);
+    	if(lock_status == 'unlock-alt') {
+    		lock_status = 'lock';
+    		$( '#lock_toggle' ).parent().removeClass('lock_div_unlocked');
+    		$( '#lock_toggle' ).parent().addClass('lock_div_locked');
+    		
+		}
+    	else{
+    		lock_status = 'unlock-alt';
+    		$( '#lock_toggle' ).parent().removeClass('lock_div_locked');
+    		$( '#lock_toggle' ).parent().addClass('lock_div_unlocked');
+    		
+		} 
+    	$( '#lock_toggle' ).addClass('fa-'+lock_status);
+    	$('[name="flask_lock"]' ).val(lock_status);
+    	
+    })
 });
 
 

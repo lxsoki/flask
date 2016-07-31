@@ -23,7 +23,7 @@ class File_View extends View
 		$this->tpl->setFile('tpl_main', 'file/' . $this->templateFile . '.tpl');
 	}
 	
-	public function showUploadedFiles($templateFile, $uploadedFiles = array() )
+	public function showUploadedFiles($templateFile, $uploadedFiles = array(), $flashKey = ''  )
 	{
 		$this->showPage($templateFile);
 		
@@ -39,6 +39,7 @@ class File_View extends View
 				}
 				$this->tpl->parse('filelist_block', 'flask_file_list', true);
 			}
+			$this->tpl->setVar('FLASK_KEY', $flashKey);
 		}
 	}
 }

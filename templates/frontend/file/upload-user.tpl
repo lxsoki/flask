@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data" method="POST" action="{SITE_URL}/file/upload">
+<form class="pure-form" enctype="multipart/form-data" method="POST" action="{SITE_URL}/file/upload">
 	<div class="filelist">
 		<input class="fileUpload" type="file" name="files[]"/>
 		
@@ -12,6 +12,10 @@
 	</div>
 	<div class="expiry_div" id="expiry_text_div">
 		<span class="expiry_text" id="expiry_days_text"> 15 zile </span>
+	</div>
+	<div class="lock_div lock_div_unlocked">
+		<span class="fa fa-icon fa-unlock-alt" id="lock_toggle"></span>
+        <input type="hidden" name="flask_lock" value="unlock"/>
 	</div>
 		<button class="flask_button flask_blue_button"  id="flask_add_file"> Adaugare fisier </button>
 	<input class="uploadButton" type="submit" name="submit" value="Upload"/>

@@ -29,6 +29,7 @@ switch ($registry->requestAction)
 			$userId = isset($registry->session->user->id) ? $registry->session->user->id : null;
 			$uploadedFiles = array();
 			$shareOptions = array();
+			$flashKey = '';
 			foreach($_FILES['files']['name'] as $key => $name)
 			{
 				if(empty($name))
@@ -38,6 +39,11 @@ switch ($registry->requestAction)
 				if(isset($registry->session->user->username, $registry->session->user->id) )
 				{
 					$shareOptions['expiry'] = $_POST['flask_expiry'];
+					if(isset($_POST['flask_lock']) && $_POST['flask_lock'] == 'lock')
+					{
+						$shareOptions['key'] = substr(md5(microtime(TRUE)), 0, 16);
+						$flashKey = $shareOptions['key'];
+					}
 				}
 				$fileData = $fileModel->processFile($name,
 				$_FILES['files']['type'][$key],
@@ -48,7 +54,7 @@ switch ($registry->requestAction)
 				
 				$uploadedFiles[] = $fileData;
 			}
-			$fileView->showUploadedFiles('upload-complete', $uploadedFiles);
+			$fileView->showUploadedFiles('upload-complete', $uploadedFiles, $flashKey);
 		}
 		else 
 		{
