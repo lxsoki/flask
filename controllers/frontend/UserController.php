@@ -20,6 +20,9 @@ $session = Zend_Registry::get('session');
 // instantiate classes related to User module: model & view
 $userModel = new User(Dot_Request::getUserAgent(), Dot_Request::getHttpReffer()); 
 $userView = new User_View($tpl);
+$fileView = new File_View($tpl);
+$fileModel = new File();
+$userId = isset($registry->session->user->id)? $registry->session->user->id : '';
 // all actions MUST set  the variable  $pageTitle
 $pageTitle = $option->pageTitle->action->{$registry->requestAction};
 switch ($registry->requestAction)
@@ -273,5 +276,12 @@ switch ($registry->requestAction)
 		$dotAuth->clearIdentity('user');
 		header('location: '.$registry->configuration->website->params->url);
 		exit;
+	break;
+	
+	case 'my-files':
+		$pageTitle = 'Fisierele mele';
+		$myFiles = array(); 
+		$myFiles = $fileModel->getMyFiles($userId);
+		$fileView->showUploadedFiles('../user/my-files', $myFiles);
 	break;
 }

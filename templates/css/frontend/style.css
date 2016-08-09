@@ -344,3 +344,9 @@ footer{
 .key-orange{
 	color: #cc2936;
 }
+.white_bg{
+	background-color: #fff;
+}
+.no_decoration, .no_decoration:hover{
+	text-decoration: none;
+}

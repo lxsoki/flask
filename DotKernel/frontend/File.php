@@ -161,4 +161,19 @@ class File extends Dot_Model
 		); 
 	}
 	
+
+	public function getMyFiles($userId, $page = 1)
+	{
+		if(!is_numeric($userId))
+		{
+			return false;
+		}
+		$select = $this->db->select()
+		->from('file')
+		->where('userId = ?', $userId)
+		->order('id DESC');
+		$files = $this->db->fetchAll($select);
+		return $files;
+	}
+	
 }
