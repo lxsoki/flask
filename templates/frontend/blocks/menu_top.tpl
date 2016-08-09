@@ -16,6 +16,9 @@
 	</li>
 	<!-- END top_menu_not_logged -->
 	<!-- BEGIN top_menu_logged -->
+	<li class="{SEL_USER_MY-FILES}">
+		<a href="{SITE_URL}/user/my-files">Fisierele mele</a>
+	</li>
 	<li class="{SEL_USER_ACCOUNT}">
 		<a href="{SITE_URL}/user/account">Contul meu</a>
 	</li>
