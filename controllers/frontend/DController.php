@@ -84,7 +84,6 @@ function flask_readFile($dModel, $hash){
 	$pieceSize = (1024*1024)*16; // 16 mb per piece
 	$filePieces = (int) ($fileSize / $pieceSize );
 	$lastPiece = $fileSize % $pieceSize; /**/
-	header('Content-Disposition: attachment; filename=2' . $attachmentName);
 	for($i=0; $i<$filePieces; $i++)
 	{
 		echo fread($fp, $pieceSize );
