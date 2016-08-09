@@ -76,7 +76,10 @@ class File extends Dot_Model
 		$fileData = array('hash'=> $hash, 'name'=>$name, 'type' => $type, 'extension' => $extension , 'size'=>$size, );
 		if($userId != null) $fileData['userId'] = $userId;
 		if($userId != null) $fileData['shareOptions'] = null; #@todo: process share options  = $shareOptions;
-		 
+		
+		// default value for key
+		$fileData['key'] = '';
+		
 		// process share options 
 		if(isset($shareOptions['expiry']))
 		{
