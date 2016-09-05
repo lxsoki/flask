@@ -87,6 +87,22 @@
 				</subItem>
 			</subItems>
 		</item>
+		<item>
+			<title>Files</title>
+			<link>file/</link>
+			<description>File Management</description>
+			<subItems>
+				<subItem>
+					<title>Manage Files</title>
+					<link>file/manage/</link>
+					<description>File Manager</description>
+					<highlight>
+						<link>file/update/</link>
+						<link>file/delete/</link>
+					</highlight>
+				</subItem>
+			</subItems>
+		</item>
 	</menu>
 </config>
 </menus>
