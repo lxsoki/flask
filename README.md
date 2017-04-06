@@ -5,7 +5,7 @@ File sharing service (school project)
 Installing
 * Import db found in ~~@ deleted/flask.sql~~
 * Change db config and website params url in: `configs/application.ini`
-
+* Browse to: http://localhost/flask
 
 # Dot Kernel
 
