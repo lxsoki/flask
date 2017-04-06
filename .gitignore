@@ -55,3 +55,5 @@ clover.xml
 # */config/
 # */settings/
 
+#remove sensible data
+configs/application.ini
